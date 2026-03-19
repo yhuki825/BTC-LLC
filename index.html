@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="合同会社BTC｜広島県福山市を拠点とした広告マーケティング・営業代行のプロフェッショナルパートナー。" />
+  <title>合同会社BTC | Business Transformation Company</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Noto Serif JP + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    /* ── Tailwind config ── */
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Noto Serif JP"', 'serif'],
+            sans:  ['Inter', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              50:  '#eef0f8',
+              100: '#d5d9ef',
+              300: '#8b96d4',
+              500: '#4a5ab8',
+              700: '#2a3a8c',
+              900: '#1a2460',
+            },
+          },
+          letterSpacing: {
+            widest2: '0.3em',
+            widest3: '0.4em',
+            widest4: '0.5em',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* ── Base ── */
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Serif JP', serif;
+      background-color: #fafaf7;
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+    ::selection { background: #c7d2fe; }
+
+    /* ── Scroll-reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s cubic-bezier(.4,0,.2,1), transform 0.75s cubic-bezier(.4,0,.2,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── Seigaiha SVG pattern ── */
+    .seigaiha-bg {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='60'%3E%3Cpath d='M0 40 C10 28,30 28,40 40 S70 52,80 40' fill='none' stroke='%231a2460' stroke-width='0.8' opacity='0.15'/%3E%3Cpath d='M0 60 C10 48,30 48,40 60 S70 72,80 60' fill='none' stroke='%231a2460' stroke-width='0.8' opacity='0.15'/%3E%3Cpath d='M0 20 C10 8,30 8,40 20 S70 32,80 20' fill='none' stroke='%231a2460' stroke-width='0.8' opacity='0.15'/%3E%3C/svg%3E");
+    }
+    .seigaiha-light {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='60'%3E%3Cpath d='M0 40 C10 28,30 28,40 40 S70 52,80 40' fill='none' stroke='%23ffffff' stroke-width='0.8' opacity='0.12'/%3E%3Cpath d='M0 60 C10 48,30 48,40 60 S70 72,80 60' fill='none' stroke='%23ffffff' stroke-width='0.8' opacity='0.12'/%3E%3Cpath d='M0 20 C10 8,30 8,40 20 S70 32,80 20' fill='none' stroke='%23ffffff' stroke-width='0.8' opacity='0.12'/%3E%3C/svg%3E");
+    }
+
+    /* ── Nav underline ── */
+    .nav-link::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background: #1a2460;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .nav-link:hover::after { transform: scaleX(1); }
+
+    /* ── Logo diamond ── */
+    .logo-diamond {
+      transition: transform 0.5s ease;
+    }
+    .logo-wrap:hover .logo-diamond { transform: rotate(90deg); }
+
+    /* ── Hero scroll indicator ── */
+    @keyframes scrollDown {
+      0%   { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(20px); opacity: 0; }
+    }
+    .scroll-dot { animation: scrollDown 1.6s ease-in-out infinite; }
+
+    /* ── Service card ── */
+    .service-card {
+      border-bottom: 4px solid transparent;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .service-card:hover { border-color: #1a2460; box-shadow: 0 8px 40px rgba(26,36,96,0.08); }
+    .service-icon-wrap {
+      transition: background 0.4s ease;
+    }
+    .service-card:hover .service-icon-wrap { background: #1a2460; }
+    .service-card:hover .service-icon-wrap svg { color: #fff !important; }
+
+    /* ── Feature list item ── */
+    .feature-item {
+      border-left: 2px solid rgba(26,36,96,0.2);
+      transition: border-color 0.3s ease;
+    }
+    .feature-item:hover { border-color: #1a2460; }
+
+    /* ── About cards ── */
+    .about-card-2 { transform: translateY(2rem); }
+
+    /* ── Map placeholder ── */
+    .map-placeholder {
+      background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+      transition: opacity 0.3s ease;
+    }
+    .map-placeholder:hover { opacity: 0.85; }
+
+    /* ── Footer nav ── */
+    .footer-link {
+      color: rgba(255,255,255,0.55);
+      transition: color 0.25s ease;
+    }
+    .footer-link:hover { color: #a5b4fc; }
+
+    /* ── Vertical accent text ── */
+    .vertical-text {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }
+
+    /* ── Mobile menu ── */
+    #mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(.4,0,.2,1);
+    }
+    #mobile-menu.open { max-height: 400px; }
+  </style>
+</head>
+
+<body>
+
+<!-- ════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
+<nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+
+    <!-- Logo -->
+    <a href="#hero" class="logo-wrap flex items-center gap-3 cursor-pointer" onclick="scrollTo('hero');return false;">
+      <div class="relative w-11 h-11 flex items-center justify-center flex-shrink-0">
+        <div class="logo-diamond absolute inset-0 bg-navy-900 rotate-45" style="background:#1a2460;"></div>
+        <span class="relative text-white font-bold text-lg z-10 font-sans">B</span>
+      </div>
+      <div class="flex flex-col leading-none">
+        <span class="text-lg font-bold tracking-widest2">合同会社BTC</span>
+        <span class="text-[9px] tracking-widest3 mt-1 uppercase font-sans" style="color:#1a2460;opacity:.65;">Business Transformation</span>
+      </div>
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-10 font-sans">
+      <a href="#about"   class="nav-link text-sm font-medium hover:text-navy-900 transition-colors py-2" onclick="scrollTo('about');return false;">About</a>
+      <a href="#service" class="nav-link text-sm font-medium hover:text-navy-900 transition-colors py-2" onclick="scrollTo('service');return false;">Service</a>
+      <a href="#message" class="nav-link text-sm font-medium hover:text-navy-900 transition-colors py-2" onclick="scrollTo('message');return false;">Message</a>
+      <a href="#company" class="nav-link text-sm font-medium hover:text-navy-900 transition-colors py-2" onclick="scrollTo('company');return false;">Company</a>
+    </div>
+
+    <!-- Hamburger -->
+    <button id="hamburger" class="md:hidden p-2 flex flex-col gap-[5px] group" aria-label="メニューを開く" onclick="toggleMenu()">
+      <span id="h-line1" class="block w-6 h-[1.5px] bg-current transition-all duration-300"></span>
+      <span id="h-line2" class="block w-6 h-[1.5px] bg-current transition-all duration-300"></span>
+      <span id="h-line3" class="block w-4 h-[1.5px] bg-current transition-all duration-300 self-end"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden bg-white shadow-xl">
+    <div class="flex flex-col items-center gap-6 py-8 font-sans">
+      <a href="#about"   class="text-base font-medium tracking-widest" onclick="scrollTo('about');return false;">About</a>
+      <a href="#service" class="text-base font-medium tracking-widest" onclick="scrollTo('service');return false;">Service</a>
+      <a href="#message" class="text-base font-medium tracking-widest" onclick="scrollTo('message');return false;">Message</a>
+      <a href="#company" class="text-base font-medium tracking-widest" onclick="scrollTo('company');return false;">Company</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden seigaiha-bg" style="background-color:#fafaf7;">
+  <!-- Diagonal accent -->
+  <div class="absolute top-0 right-0 w-1/2 h-full pointer-events-none" style="background:rgba(26,36,96,0.04);clip-path:polygon(10% 0,100% 0,100% 100%,0% 100%);"></div>
+
+  <!-- Left accent line -->
+  <div class="hidden lg:block fixed left-0 top-0 h-full w-px z-0" style="background:rgba(26,36,96,0.1);"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10 w-full pt-24 pb-16">
+    <div class="flex flex-col lg:flex-row items-center lg:items-start gap-12">
+
+      <!-- Vertical accent text -->
+      <div class="hidden lg:block vertical-text font-bold select-none font-sans"
+           style="color:rgba(26,36,96,0.08);font-size:5.5rem;letter-spacing:0.15em;">
+        BUSINESS TRANSFORMATION
+      </div>
+
+      <!-- Main content -->
+      <div class="flex-grow">
+        <!-- Badge -->
+        <div class="reveal inline-block px-4 py-1 border text-sm tracking-widest2 mb-8 font-sans"
+             style="border-color:rgba(26,36,96,0.3);color:#1a2460;">
+          広告マーケティング × 営業代行
+        </div>
+
+        <!-- Heading -->
+        <h1 class="reveal reveal-delay-1 font-bold mb-8 leading-tight tracking-tight"
+            style="font-size:clamp(3rem,8vw,6rem);">
+          志を、<br />
+          <span style="color:#1a2460;">確かな成果</span>へ。
+        </h1>
+
+        <!-- Sub copy -->
+        <p class="reveal reveal-delay-2 text-lg md:text-xl mb-12 leading-loose max-w-xl" style="color:#475569;">
+          広島県福山市を拠点に、<br />
+          企業の「本質的な価値」を掘り起こし、<br />
+          市場へ届けるパートナー。
+        </p>
+
+        <!-- CTA -->
+        <div class="reveal reveal-delay-3 flex flex-wrap gap-4">
+          <a href="#service" onclick="scrollTo('service');return false;"
+             class="inline-flex items-center gap-3 px-10 py-4 text-white font-medium font-sans transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5"
+             style="background:#1a2460;">
+            事業を詳しく見る
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#company" onclick="scrollTo('company');return false;"
+             class="inline-flex items-center gap-3 px-10 py-4 font-medium font-sans border transition-all duration-300 hover:bg-navy-900 hover:text-white"
+             style="border-color:#1a2460;color:#1a2460;">
+            会社概要
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+    <span class="font-sans text-[9px] tracking-widest4 uppercase" style="color:#1a2460;">Scroll</span>
+    <div class="w-px h-16 overflow-hidden" style="background:rgba(26,36,96,0.15);">
+      <div class="scroll-dot w-full h-1/2" style="background:#1a2460;"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════ -->
+<section id="about" class="py-32 relative overflow-hidden bg-white">
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="flex flex-col md:flex-row gap-16 lg:gap-24">
+
+      <!-- Text -->
+      <div class="md:w-1/2">
+        <p class="reveal text-xs tracking-widest4 font-bold mb-4 uppercase font-sans" style="color:#1a2460;">About BTC</p>
+        <h2 class="reveal reveal-delay-1 text-3xl md:text-4xl font-bold mb-10 leading-relaxed pl-6"
+            style="border-left:4px solid #1a2460;">
+          現場で培った「動かす力」で、<br />貴社の事業を後押しする。
+        </h2>
+        <p class="reveal reveal-delay-2 leading-loose mb-6" style="color:#475569;line-height:2.2;">
+          私たちは机上の空論を語りません。広告で認知を広げ、営業で成約を掴み取る。その一連の流れを自ら体現し、クライアント様の課題に泥臭く向き合うのが、合同会社BTCのスタイルです。
+        </p>
+        <p class="reveal reveal-delay-3 leading-loose" style="color:#475569;line-height:2.2;">
+          福山という地に根ざしながら、最新のマーケティング手法を柔軟に取り入れ、個人事業主から中小企業まで、多角的な支援を展開しています。
+        </p>
+      </div>
+
+      <!-- Cards -->
+      <div class="md:w-1/2 grid grid-cols-2 gap-4 items-start">
+        <div class="reveal reveal-delay-1 p-8 flex flex-col justify-end border border-slate-100" style="background:#fafaf7;aspect-ratio:3/4;">
+          <div class="text-5xl font-bold mb-4 font-sans" style="color:rgba(26,36,96,0.12);">01</div>
+          <h3 class="font-bold text-xl mb-2">戦略的視点</h3>
+          <p class="text-sm" style="color:#64748b;">一過性ではない、継続的な成長を描きます。</p>
+        </div>
+        <div class="reveal reveal-delay-2 about-card-2 p-8 flex flex-col justify-end text-white" style="background:#1a2460;aspect-ratio:3/4;">
+          <div class="text-5xl font-bold mb-4 font-sans" style="color:rgba(255,255,255,0.15);">02</div>
+          <h3 class="font-bold text-xl mb-2">圧倒的実行力</h3>
+          <p class="text-sm" style="color:rgba(255,255,255,0.65);">結果が出るまで、徹底的に伴走します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     SERVICE
+════════════════════════════════════════ -->
+<section id="service" class="py-32 relative" style="background:#f5f4ef;">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Section heading -->
+    <div class="text-center mb-24">
+      <p class="reveal text-xs tracking-widest4 font-bold mb-4 uppercase font-sans" style="color:#1a2460;">Our Service</p>
+      <h2 class="reveal reveal-delay-1 text-4xl font-bold">事業内容</h2>
+      <div class="reveal reveal-delay-2 w-12 h-[3px] mx-auto mt-6" style="background:#1a2460;"></div>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-2 gap-10">
+
+      <!-- Card 1: 広告マーケティング -->
+      <div class="reveal reveal-delay-1 service-card bg-white p-12 shadow-sm">
+        <div class="flex items-start justify-between mb-8">
+          <div class="service-icon-wrap p-4 rounded-full" style="background:#eef0f8;">
+            <!-- Megaphone icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#1a2460" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+            </svg>
+          </div>
+          <span class="text-xs font-bold tracking-widest2 font-sans" style="color:#cbd5e1;">Advertising Marketing</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-5">広告マーケティング</h3>
+        <p class="mb-10 leading-relaxed" style="color:#475569;min-height:5rem;">
+          市場の「流れ」を読み解き、最適な媒体を通じて貴社の価値を世に広めます。デジタルからアナログまで、伝統と革新を融合させた戦略をご提案します。
+        </p>
+        <ul class="space-y-4">
+          <li class="feature-item pl-4 py-1 text-sm font-medium font-sans">SNS・リスティング広告</li>
+          <li class="feature-item pl-4 py-1 text-sm font-medium font-sans">地域密着型マーケティング</li>
+          <li class="feature-item pl-4 py-1 text-sm font-medium font-sans">ブランド価値の再定義</li>
+        </ul>
+      </div>
+
+      <!-- Card 2: 営業代行 -->
+      <div class="reveal reveal-delay-2 service-card bg-white p-12 shadow-sm">
+        <div class="flex items-start justify-between mb-8">
+          <div class="service-icon-wrap p-4 rounded-full" style="background:#eef0f8;">
+            <!-- TrendingUp icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="#1a2460" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <span class="text-xs font-bold tracking-widest2 font-sans" style="color:#cbd5e1;">Sales Agency</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-5">営業代行</h3>
+        <p class="mb-10 leading-relaxed" style="color:#475569;min-height:5rem;">
+          「対話」を重んじ、貴社の想いを代弁する。単なる数合わせではない、長期的な信頼関係を築くための営業プロセスを構築し、成果へと導きます。
+        </p>
+        <ul class="space-y-4">
+          <li class="feature-item pl-4 py-1 text-sm font-medium font-sans">新規商談獲得</li>
+          <li class="feature-item pl-4 py-1 text-sm font-medium font-sans">営業戦略コンサルティング</li>
+          <li class="feature-item pl-4 py-1 text-sm font-medium font-sans">成約率向上の仕組み作り</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     MESSAGE
+════════════════════════════════════════ -->
+<section id="message" class="py-32 text-white relative overflow-hidden seigaiha-light" style="background:#1a2460;">
+  <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+    <p class="reveal text-xs tracking-widest4 font-bold mb-8 uppercase font-sans" style="color:#a5b4fc;">Message</p>
+    <blockquote class="reveal reveal-delay-1 text-2xl md:text-4xl font-bold leading-relaxed mb-12">
+      「できない」を「できる」に変える、<br />
+      貴社の良き「右腕」として。
+    </blockquote>
+    <p class="reveal reveal-delay-2 leading-loose mb-14 max-w-2xl mx-auto" style="color:rgba(255,255,255,0.72);line-height:2.2;">
+      市場環境が激しく変化する現代において、不変なのは「人と人との繋がり」です。私たちは福山市の地から、熱意を持って貴社の挑戦を支えます。誠実に、迅速に、そして情熱的に。皆様と共に歩む時間を大切にしています。
+    </p>
+    <div class="reveal reveal-delay-3 inline-block pt-8 px-12" style="border-top:1px solid rgba(165,180,252,0.3);">
+      <p class="text-sm mb-2 font-sans" style="color:#a5b4fc;">合同会社BTC 代表</p>
+      <p class="text-2xl font-bold tracking-widest">末廣 芳登</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     COMPANY
+════════════════════════════════════════ -->
+<section id="company" class="py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row gap-16 lg:gap-24">
+
+      <!-- Sticky heading -->
+      <div class="md:w-1/3">
+        <div class="md:sticky md:top-32">
+          <p class="reveal text-xs tracking-widest4 font-bold mb-4 uppercase font-sans" style="color:#1a2460;">Company Profile</p>
+          <h2 class="reveal reveal-delay-1 text-4xl font-bold mb-8">会社概要</h2>
+          <p class="reveal reveal-delay-2 text-sm leading-relaxed" style="color:#64748b;">
+            広島県福山市を拠点に、<br />
+            地域の持続可能な発展と、<br />
+            企業の利益最大化に貢献します。
+          </p>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="md:w-2/3">
+        <div class="reveal p-8 md:p-12 border border-slate-100" style="background:#fafaf7;">
+          <dl class="flex flex-col gap-8">
+
+            <div class="flex flex-col sm:flex-row sm:items-baseline pb-6" style="border-bottom:1px solid rgba(26,36,96,0.08);">
+              <dt class="w-40 font-bold text-sm mb-2 sm:mb-0 font-sans flex-shrink-0" style="color:#1a2460;">会社名</dt>
+              <dd class="font-medium tracking-wide">合同会社BTC</dd>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-baseline pb-6" style="border-bottom:1px solid rgba(26,36,96,0.08);">
+              <dt class="w-40 font-bold text-sm mb-2 sm:mb-0 font-sans flex-shrink-0" style="color:#1a2460;">代表者</dt>
+              <dd class="font-medium tracking-wide">末廣 芳登</dd>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-baseline pb-6" style="border-bottom:1px solid rgba(26,36,96,0.08);">
+              <dt class="w-40 font-bold text-sm mb-2 sm:mb-0 font-sans flex-shrink-0" style="color:#1a2460;">事業内容</dt>
+              <dd class="font-medium tracking-wide">広告マーケティング事業 / 営業代行事業</dd>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-baseline pb-6" style="border-bottom:1px solid rgba(26,36,96,0.08);">
+              <dt class="w-40 font-bold text-sm mb-2 sm:mb-0 font-sans flex-shrink-0" style="color:#1a2460;">所在地</dt>
+              <dd class="font-medium tracking-wide">〒720-0013 広島県福山市千田町</dd>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-baseline">
+              <dt class="w-40 font-bold text-sm mb-2 sm:mb-0 font-sans flex-shrink-0" style="color:#1a2460;">主要エリア</dt>
+              <dd class="font-medium tracking-wide">広島県内、および全国対応可</dd>
+            </div>
+
+          </dl>
+
+          <!-- Map placeholder -->
+          <div class="mt-12 map-placeholder relative h-52 overflow-hidden cursor-pointer rounded-sm">
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-2">
+              <!-- MapPin icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="#1a2460" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <span class="text-xs font-bold tracking-widest2 uppercase font-sans" style="color:rgba(26,36,96,0.55);">Hiroshima · Fukuyama</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="py-16" style="background:#0f172a;color:#fff;">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Top row -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-12 pb-12 mb-8" style="border-bottom:1px solid rgba(255,255,255,0.06);">
+
+      <!-- Brand -->
+      <div class="text-center md:text-left">
+        <div class="flex items-center justify-center md:justify-start gap-3 mb-3">
+          <div class="w-8 h-8 flex items-center justify-center rotate-45" style="background:#fff;">
+            <span class="font-bold text-xs -rotate-45 font-sans" style="color:#1a2460;">B</span>
+          </div>
+          <span class="text-xl font-bold tracking-widest2">合同会社BTC</span>
+        </div>
+        <p class="text-xs tracking-widest2 font-sans" style="color:rgba(255,255,255,0.35);">Advertising &amp; Sales Professional Partner</p>
+      </div>
+
+      <!-- Nav links -->
+      <div class="flex gap-14 font-sans text-sm font-medium">
+        <div class="flex flex-col gap-4">
+          <a href="#hero"    class="footer-link" onclick="scrollTo('hero');return false;">Top</a>
+          <a href="#about"   class="footer-link" onclick="scrollTo('about');return false;">About</a>
+        </div>
+        <div class="flex flex-col gap-4">
+          <a href="#service" class="footer-link" onclick="scrollTo('service');return false;">Service</a>
+          <a href="#company" class="footer-link" onclick="scrollTo('company');return false;">Company</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-[10px] tracking-widest2 uppercase font-sans" style="color:rgba(255,255,255,0.25);">
+        &copy; <span id="year"></span> LLC BTC. All Rights Reserved.
+      </p>
+      <div class="flex gap-1.5">
+        <span class="w-1 h-1 rounded-full" style="background:rgba(255,255,255,0.18);"></span>
+        <span class="w-1 h-1 rounded-full" style="background:rgba(255,255,255,0.18);"></span>
+        <span class="w-1 h-1 rounded-full" style="background:rgba(255,255,255,0.18);"></span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════ -->
+<script>
+  /* ── Year ── */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ── Smooth scroll helper ── */
+  function scrollTo(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    // close mobile menu
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.remove('open');
+    menuOpen = false;
+    resetHamburger();
+  }
+
+  /* ── Navbar scroll state ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      navbar.style.background = 'rgba(255,255,255,0.97)';
+      navbar.style.boxShadow  = '0 2px 20px rgba(0,0,0,0.07)';
+      navbar.style.paddingTop    = '1rem';
+      navbar.style.paddingBottom = '1rem';
+    } else {
+      navbar.style.background = 'transparent';
+      navbar.style.boxShadow  = 'none';
+      navbar.style.paddingTop    = '1.5rem';
+      navbar.style.paddingBottom = '1.5rem';
+    }
+  }, { passive: true });
+
+  /* ── Mobile menu toggle ── */
+  let menuOpen = false;
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('open', menuOpen);
+    const l1 = document.getElementById('h-line1');
+    const l2 = document.getElementById('h-line2');
+    const l3 = document.getElementById('h-line3');
+    if (menuOpen) {
+      l1.style.transform = 'translateY(6.5px) rotate(45deg)';
+      l2.style.opacity   = '0';
+      l3.style.transform = 'translateY(-6.5px) rotate(-45deg)';
+      l3.style.width     = '1.5rem';
+    } else {
+      resetHamburger();
+    }
+  }
+  function resetHamburger() {
+    const l1 = document.getElementById('h-line1');
+    const l2 = document.getElementById('h-line2');
+    const l3 = document.getElementById('h-line3');
+    l1.style.transform = '';
+    l2.style.opacity   = '1';
+    l3.style.transform = '';
+    l3.style.width     = '1rem';
+  }
+
+  /* ── Scroll reveal (Intersection Observer) ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer  = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
